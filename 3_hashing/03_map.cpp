@@ -18,7 +18,7 @@ int main() {
         mpp[arr[i]]++;
     }
 
-    // Queries
+    // Queries∞
     int q;
     cin >> q;
 
@@ -28,6 +28,8 @@ int main() {
 
         cout << mpp[number] << endl;
     }
+    cout<<mpp.begin()->second;
+    cout<<mpp.rebegin()->second;
 
     return 0;
 }

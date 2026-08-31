@@ -35,3 +35,13 @@ struct Node* createNode(int data){
     return newNode;
 }
 
+int main(){
+    struct Node* head = createNode(10);  // Create the head node with data 10
+    if(head!= NULL){
+        cout << "Node created with data: " << head->data << endl;  // Output the data of the head node
+    }
+
+    free(head);  // Free the allocated memory for the head node to prevent memory leaks
+    return 0;  // Return 0 to indicate successful execution of the program
+}
+
