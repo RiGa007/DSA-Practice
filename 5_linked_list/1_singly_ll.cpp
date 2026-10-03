@@ -11,7 +11,7 @@ struct Node{
     }
 };
 
-void insertEnd(Node* head, int value){
+void insertEnd(Node*& head, int value){
     Node* newNode = new Node(value);
     if(head == NULL){
         head = newNode;
