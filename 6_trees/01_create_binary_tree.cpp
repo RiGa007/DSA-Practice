@@ -7,15 +7,26 @@ struct Node {
     Node* right;
 };
 
-void preorder(Node* root) {
-    if (root == nullptr) {
+// void preorder(Node* root) {
+//     if (root == nullptr) {
+//         return;
+//     }
+
+//     cout << root->data << " ";
+//     preorder(root->left);
+//     preorder(root->right);
+// }
+
+void inorder(Node* root){
+    if(root == nullptr){
         return;
     }
-
-    cout << root->data << " ";
-    preorder(root->left);
-    preorder(root->right);
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right); 
 }
+
+
 
 int main() {
     Node* root = new Node;
@@ -49,7 +60,8 @@ int main() {
     leftChild->left = leftChildleft;
     leftChild->right = leftChildright;
 
-    preorder(root);
+    // preorder(root);
+    inorder(root);
 
     return 0;
 }
