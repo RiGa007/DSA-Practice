@@ -17,13 +17,23 @@ struct Node {
 //     preorder(root->right);
 // }
 
-void inorder(Node* root){
-    if(root == nullptr){
+// void inorder(Node* root){
+//     if(root == nullptr){
+//         return;
+//     }
+//     inorder(root->left);
+//     cout<<root->data<<" ";
+//     inorder(root->right); 
+// }
+
+void postorder(Node* root){
+      if(root == nullptr){
         return;
-    }
-    inorder(root->left);
-    cout<<root->data<<" ";
-    inorder(root->right); 
+      }
+
+      postorder(root->left);
+      postorder(root->right);
+      cout<<root->data<<" ";
 }
 
 
@@ -61,7 +71,7 @@ int main() {
     leftChild->right = leftChildright;
 
     // preorder(root);
-    inorder(root);
+    postorder(root);
 
     return 0;
 }
