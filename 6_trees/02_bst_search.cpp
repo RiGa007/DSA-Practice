@@ -7,23 +7,57 @@ struct Node {
     Node* right;
 };
 
-bool searchBST(Node* root, int key) {
 
+
+    
+// bool searchBST(Node* root, int key) {
+
+//     if(root==nullptr){
+//         return false;
+//     }
+
+//     if(root->data == key){
+//         return true;
+//     }
+
+//     if(key<root->data){
+//         return searchBST(root->left, key);
+//     }
+//     else{
+//         return searchBST(root->right, key);
+//     }
+
+// }
+
+Node* insertBST(Node* root, int value) {
+    // 1. If root is nullptr, create and return a new node.
     if(root==nullptr){
-        return false;
+        Node* newNode = new Node;
+        newNode->data = value;
+        newNode->left = nullptr;
+        newNode->right = nullptr;
+        return newNode;
     }
 
-    if(root->data == key){
-        return true;
+
+    if(value<root->data){
+        root->left = insertBST(root->left, value);
+     
     }
 
-    if(key<root->data){
-        return searchBST(root->left, key);
+    if(value>root->data){
+    root->right = insertBST(root->right, value);
+   
     }
-    else{
-        return searchBST(root->right, key);
-    }
+    return root;
+}
 
+void inorder(Node* root) {
+    if (root == nullptr) return;
+
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
 }
 
 int main() {
@@ -79,8 +113,13 @@ int main() {
 
     cout << boolalpha;
 
-    cout << searchBST(root, 15) << endl;
-    cout << searchBST(root, 100) << endl;
+    // cout << searchBST(root, 15) << endl;
+    // cout << searchBST(root, 100) << endl;
+
+    root = insertBST(root, 21);
+    inorder(root);
+    cout<<endl;
+
 
     return 0;
 }
