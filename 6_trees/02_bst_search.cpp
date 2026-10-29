@@ -7,7 +7,7 @@ struct Node {
     Node* right;
 };
 
-
+ 
 
     
 // bool searchBST(Node* root, int key) {
@@ -58,6 +58,53 @@ void inorder(Node* root) {
     inorder(root->left);
     cout << root->data << " ";
     inorder(root->right);
+}
+
+Node* deleteBST(Node* root, int key) {
+    if (root == nullptr) {
+        return nullptr;
+    }
+
+    if (key < root->data) {
+        root->left = deleteBST(root->left, key);
+    }
+    else if (key > root->data) {
+        root->right = deleteBST(root->right, key);
+    }
+    else {
+        // We found the node to delete.
+        if(root->left == nullptr && root->right == nullptr){
+            delete root;
+            return nullptr;
+        }
+        // Case 1: No children
+        
+
+        // Case 2: Only a left child
+        if(root->right == nullptr){
+            Node* child = root->left;
+            delete root;
+            return child;
+        }
+
+        // Case 2: Only a right child
+        if(root->left == nullptr){
+            Node* child = root -> right;
+            delete root;
+            return child;
+        }
+
+        // Case 3: Two children
+        Node* successor = root -> right;
+        while(successor->left != nullptr){
+            successor = successor->left;
+        }
+        root->data = successor->data;
+        root->right = deleteBST(root->right, successor->data);
+
+    }
+
+    return root;
 }
 
 int main() {
@@ -116,10 +163,13 @@ int main() {
     // cout << searchBST(root, 15) << endl;
     // cout << searchBST(root, 100) << endl;
 
-    root = insertBST(root, 21);
+    // root = insertBST(root, 21);
+    // inorder(root);
+    // cout<<endl;
+
+    root = deleteBST(root, 20);
     inorder(root);
     cout<<endl;
 
-
     return 0;
-}
+};
